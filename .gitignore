@@ -1,0 +1,6 @@
+node_modules
+.env
+ShopNest_Postman_Collection.json
+push_to_github.ps1
+codebase_analysis.md
+ShopNest_Postman_Collection.json
