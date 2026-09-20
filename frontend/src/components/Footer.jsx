@@ -19,18 +19,18 @@ const Footer = () => {
         gap: '20px'
       }}>
         <div>
-          <h3 style={{ color: '#f97316', marginBottom: '10px' }}>ShopNest</h3>
+          <h3 style={{ color: '#f97316', marginBottom: '10px' }}>shopVerse</h3>
           <p style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Premium E-Commerce Platform.</p>
         </div>
-        
+
         <div style={{ display: 'flex', gap: '20px' }}>
           <Link to="/about" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>About Us</Link>
           <Link to="/return" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Return Policy</Link>
           <Link to="/disclaimer" style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>Disclaimer</Link>
         </div>
-        
+
         <div style={{ color: '#a1a1aa', fontSize: '0.9rem' }}>
-          &copy; {new Date().getFullYear()} ShopNest. All rights reserved.
+          &copy; {new Date().getFullYear()} shopVerse. All rights reserved.
         </div>
       </div>
     </footer>

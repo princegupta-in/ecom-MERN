@@ -40,4 +40,8 @@ const verifyPayment = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, verifyPayment };
+const getKey = async (req, res) => {
+  res.status(200).json({ key: process.env.RAZORPAY_KEY_ID || '' });
+};
+
+module.exports = { createOrder, verifyPayment, getKey };

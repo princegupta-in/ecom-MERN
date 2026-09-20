@@ -16,10 +16,10 @@ const importData = async () => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('password123', salt);
-    
+
     const adminUser = await User.create({
       name: 'Admin User',
-      email: 'admin@shopnest.com',
+      email: 'admin@shopVerse.com',
       password: hashedPassword,
       role: 'admin'
     });
@@ -68,7 +68,7 @@ const importData = async () => {
     ];
 
     await Product.insertMany(products);
-    
+
     console.log('✅ Data Imported Successfully!');
     process.exit();
   } catch (error) {
