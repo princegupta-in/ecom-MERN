@@ -7,22 +7,55 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
-connectDB();
-
 const importData = async () => {
   try {
+    await connectDB();
     await User.deleteMany();
     await Product.deleteMany();
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash('password123', salt);
 
-    const adminUser = await User.create({
-      name: 'Admin User',
-      email: 'admin@shopVerse.com',
-      password: hashedPassword,
-      role: 'admin'
-    });
+    const users = [
+      {
+        name: 'Admin User',
+        email: 'admin@shopVerse.com',
+        password: hashedPassword,
+        role: 'admin'
+      },
+      {
+        name: 'Aarav Sharma',
+        email: 'aarav@example.com',
+        password: hashedPassword,
+        role: 'user'
+      },
+      {
+        name: 'Mia Johnson',
+        email: 'mia@example.com',
+        password: hashedPassword,
+        role: 'user'
+      },
+      {
+        name: 'Rohan Mehta',
+        email: 'rohan@example.com',
+        password: hashedPassword,
+        role: 'user'
+      },
+      {
+        name: 'Sophia Williams',
+        email: 'sophia@example.com',
+        password: hashedPassword,
+        role: 'user'
+      },
+      {
+        name: 'Kabir Patel',
+        email: 'kabir@example.com',
+        password: hashedPassword,
+        role: 'user'
+      }
+    ];
+
+    await User.insertMany(users);
 
     const products = [
       {
