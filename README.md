@@ -54,20 +54,31 @@ npm run dev
 
 ---
 
-## ☁️ 1-Click Deployment (Render Free-Tier Optimized)
+## ☁️ Deployment: Vercel + Render
 
-The server codebase features a seamless fallback mechanic leveraging Node `process.env.NODE_ENV === "production"`. When deployed to Render as a singular instance, the Express backend hosts and correctly resolves static routes to `/frontend/build` rendering the whole platform completely free on 1 Node server.
+Deploy the frontend and backend as separate services. Push the repository to **GitHub** first.
 
-1. Publish this repo onto **GitHub**.
-2. Go to [Render Dashboard](https://dashboard.render.com).
-3. Connect Repo -> Create a **Web Service**.
-4. Configure Build Command:
-   `npm run render-build` 
-   *(This cleanly installs API + UI node_modules then generates `react-scripts build`)*
-5. Configure Start Command:
-   `npm start`
-6. Open **Advanced > Environment Variables** and map your `.env` fields heavily defining `NODE_ENV = production`.
-7. Hit **Deploy**. The robust path resolving inside `/backend/server.js` hosts it fluidly!
+### Backend on Render
+
+1. In [Render Dashboard](https://dashboard.render.com), create a **Web Service** from the repository.
+2. Set **Root Directory** to `backend`.
+3. Set **Build Command** to `npm install` and **Start Command** to `npm start`.
+4. Add these environment variables in Render:
+   `NODE_ENV=production`, `MONGO_URI`, `MONGO_DB_NAME` (optional), `JWT_SECRET`, `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `GMAIL_USER`, `GMAIL_PASS`, and `FRONTEND_URL`.
+5. Set `FRONTEND_URL` to the final Vercel URL, for example `https://your-store.vercel.app`.
+6. Deploy and copy the Render service URL, for example `https://your-backend.onrender.com`.
+
+Render provides `PORT` automatically. Do not hard-code it.
+
+### Frontend on Vercel
+
+1. In [Vercel](https://vercel.com), import the same GitHub repository.
+2. Set **Root Directory** to `frontend`.
+3. Use `npm run build` as the build command and `build` as the output directory.
+4. Add the environment variable `REACT_APP_API_URL` with the Render URL, for example `https://your-backend.onrender.com`.
+5. Deploy. The included `frontend/vercel.json` keeps React Router URLs working when users refresh a page.
+
+If you use a custom Vercel domain, update Render's `FRONTEND_URL` to that exact origin and redeploy the backend.
 
 ---
 

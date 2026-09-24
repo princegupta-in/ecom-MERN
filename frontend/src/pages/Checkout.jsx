@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { clearCart } from '../redux/cartSlice';
+import { apiUrl } from '../config/api';
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const Checkout = () => {
 
   const handlePayment = async () => {
     try {
-      const orderRes = await fetch('/api/payment/order', {
+      const orderRes = await fetch(apiUrl('/api/payment/order'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalPrice })
@@ -30,7 +31,7 @@ const Checkout = () => {
       }
 
       // Fetch Razorpay key ID from backend
-      const keyRes = await fetch('/api/payment/get-key');
+      const keyRes = await fetch(apiUrl('/api/payment/get-key'));
       const keyData = await keyRes.json();
       const razorpayKey = keyData.key || process.env.REACT_APP_RAZORPAY_KEY_ID;
 
@@ -42,13 +43,13 @@ const Checkout = () => {
         description: 'Order Payment',
         order_id: orderData.id,
         handler: async function (response) {
-          const verifyRes = await fetch('/api/payment/verify', {
+          const verifyRes = await fetch(apiUrl('/api/payment/verify'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(response)
           });
           if (verifyRes.ok) {
-            const saveOrderRes = await fetch('/api/orders', {
+            const saveOrderRes = await fetch(apiUrl('/api/orders'), {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
