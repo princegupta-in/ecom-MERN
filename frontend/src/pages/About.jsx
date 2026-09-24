@@ -12,18 +12,6 @@ const About = () => {
     textAlign: 'center'
   };
 
-  const socialBtnStyle = {
-    display: 'inline-block',
-    margin: '10px',
-    padding: '10px 20px',
-    background: '#27272a',
-    color: '#fff',
-    borderRadius: '8px',
-    textDecoration: 'none',
-    transition: 'all 0.3s ease',
-    border: '1px solid rgba(255, 255, 255, 0.1)'
-  };
-
   return (
     <div style={containerStyle}>
       <h3 style={{ fontSize: '1.5rem', color: '#f97316', marginBottom: '15px' }}>ShopVerse</h3>
@@ -35,8 +23,6 @@ Our goal is to make online shopping easy, reliable, and accessible for everyone.
 We believe in offering quality products, great value, and customer satisfaction. Thank you for choosing us and being a part of our journey!
       </p>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginTop: '20px' }}>
-      </div>
     </div>
   );
 };
